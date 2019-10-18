@@ -1,0 +1,1 @@
+export const POST_MDB_CONFIG = 'POST_MDB_CONFIG';
