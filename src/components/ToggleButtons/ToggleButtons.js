@@ -8,7 +8,7 @@ class ToggleButtons extends React.Component {
 
     render() {
         return (
-          <div style={{display:"flex", justifyContent:"center"}}>
+          <div id="toggle-buttons" style={{display:"flex", justifyContent:"center"}}>
             <ButtonGroup>
               <Button size="lg" color="primary" active={this.props.itemType === 'MOVIE'} onClick={() => this.props.setItemType('MOVIE')}>Movies</Button>
               <Button size="lg" color="primary" active={this.props.itemType === 'TV'} onClick={() => this.props.setItemType('TV')}>TV Shows</Button>

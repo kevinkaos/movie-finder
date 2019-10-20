@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header';
-import Paginations from '../Pagination/Pagination';
+import Paginations from '../Paginations/Paginations';
 import ToggleButtons from '../ToggleButtons/ToggleButtons';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Footer from '../Footer/Footer';
@@ -13,7 +13,6 @@ import { postMDBConfig } from '../../actions/PostMDBConfigAction';
 import { postMoviePopular } from '../../actions/postMoviePopularAction';
 import { postTVPopular } from '../../actions/postTVPopularAction';
 import setItemType from '../../actions/setItemTypeAction.js';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas, faFilm, faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -21,21 +20,6 @@ import { fas, faFilm, faSearch } from '@fortawesome/free-solid-svg-icons'
 library.add(fas, faFilm, faSearch);
 
 class App extends React.Component {
-
-    constructor() {
-        super();
-        this.state = {
-          currentPage: 1,
-          itemsPerPage: 5
-        };
-        this.handleClick = this.handleClick.bind(this);
-      }
-
-      handleClick(event) {
-        this.setState({
-          currentPage: Number(event.target.id)
-        });
-      }
 
     componentDidMount() {
         this.props.postMDBConfig(`https://api.themoviedb.org/3/configuration?api_key=${this.props.apiKey}`);
@@ -46,13 +30,7 @@ class App extends React.Component {
 
 
     render() {
-        const { currentPage, itemsPerPage } = this.state;
-
-        const indexOfLastTodo = currentPage * itemsPerPage;
-        const indexOfFirstTodo = indexOfLastTodo - itemsPerPage;
-        const currentMovieItems = this.props.moviesPopular.results.slice(indexOfFirstTodo, indexOfLastTodo);
-
-        const renderShowType = this.props.itemType === 'MOVIE' ? <PopularMovies title="Popular Movies" MDBConfig={this.props.config} items={currentMovieItems} /> : <PopularTVShows title="Popular TV Shows" MDBConfig={this.props.config} items={this.props.tvPopular.results}/> 
+        const renderShowType = this.props.itemType === 'MOVIE' ? <PopularMovies title="Popular Movies" MDBConfig={this.props.config} items={this.props.moviesPopular.results} /> : <PopularTVShows title="Popular TV Shows" MDBConfig={this.props.config} items={this.props.tvPopular.results}/> 
 
         const renderCarouselType = this.props.itemType === 'MOVIE' ? <Test MDBConfig={this.props.config} items={this.props.moviesPopular.results} itemType={this.props.itemType}/> : <Test MDBConfig={this.props.config} itemType={this.props.itemType} items={this.props.tvPopular.results} />;
 
@@ -62,7 +40,6 @@ class App extends React.Component {
                 {renderCarouselType}
                 <ToggleButtons />
                 {renderShowType}
-                <Paginations items={this.props.moviesPopular.results} />
                 <Loader />
                 <Footer />
             </BrowserRouter>
@@ -90,5 +67,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-//  <PopularTVShows title="Popular TV Shows" MDBConfig={this.props.config} items={this.props.tvPopular.results}/> 

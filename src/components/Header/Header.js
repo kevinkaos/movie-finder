@@ -3,6 +3,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.scss';
+import Paginations from '../Paginations/Paginations';
 import {
   Collapse,
   Navbar,
@@ -27,6 +28,7 @@ const Header = (props) => {
         <NavbarBrand href="/"><FontAwesomeIcon icon="film" /> Movie Finder</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <SearchBar/>
+        <Paginations />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
