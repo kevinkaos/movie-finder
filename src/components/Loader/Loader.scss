@@ -1,0 +1,18 @@
+.loader-container {
+    background: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,38,43,1) 71%);
+    height: 100vh;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 100;
+  }
+
+  .spinner {
+    position: absolute;
+    top: calc(50% - 32px);
+    left: calc(50% - 32px);
+    width: 64px;
+    height: 64px;
+    perspective: 800px;
+  }

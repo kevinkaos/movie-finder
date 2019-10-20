@@ -1,0 +1,20 @@
+.popular__shows-list--container {
+  padding: 25px; }
+
+.popular__shows-list--container:last-child {
+  border: none;
+  background-image: none;
+  height: 0px; }
+
+.popular__shows-list--separator {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.075) 90%);
+  border: none;
+  height: 2px; }
+
+.media-body {
+  padding: 25px;
+  align-items: center !important;
+  justify-content: center; }
+
+.media {
+  align-items: center !important; }

@@ -1,23 +1,94 @@
 import React from 'react';
+import Header from '../Header/Header';
+import Paginations from '../Pagination/Pagination';
+import ToggleButtons from '../ToggleButtons/ToggleButtons';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import Loader from '../Loader/Loader';
+import PopularMovies from '../PopularMovies/PopularMovies';
+import PopularTVShows from '../PopularTVShows/PopularTVShows';
+import Test from '../Test/Test';
+import { connect } from 'react-redux';
+import { postMDBConfig } from '../../actions/PostMDBConfigAction';
+import { postMoviePopular } from '../../actions/postMoviePopularAction';
+import { postTVPopular } from '../../actions/postTVPopularAction';
+import setItemType from '../../actions/setItemTypeAction.js';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import './App.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas, faFilm, faSearch } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fas, faFilm, faSearch);
 
 class App extends React.Component {
 
-    componentDidMount() {
+    constructor() {
+        super();
+        this.state = {
+          currentPage: 1,
+          itemsPerPage: 5
+        };
+        this.handleClick = this.handleClick.bind(this);
+      }
 
+      handleClick(event) {
+        this.setState({
+          currentPage: Number(event.target.id)
+        });
+      }
+
+    componentDidMount() {
+        this.props.postMDBConfig(`https://api.themoviedb.org/3/configuration?api_key=${this.props.apiKey}`);
+        this.props.postMoviePopular(`https://api.themoviedb.org/3/movie/popular?api_key=${this.props.apiKey}&language=en-US&page=1&region=US`); 
+        this.props.postTVPopular(`https://api.themoviedb.org/3/tv/popular?api_key=${this.props.apiKey}&language=en-US&page=1`);       
+        this.props.setItemType();
     }
 
-    render() {
-        const apiKey = '150d7fd25460a548b06c13686a6bad55';
 
-        return (<div>App</div>);
+    render() {
+        const { currentPage, itemsPerPage } = this.state;
+
+        const indexOfLastTodo = currentPage * itemsPerPage;
+        const indexOfFirstTodo = indexOfLastTodo - itemsPerPage;
+        const currentMovieItems = this.props.moviesPopular.results.slice(indexOfFirstTodo, indexOfLastTodo);
+
+        const renderShowType = this.props.itemType === 'MOVIE' ? <PopularMovies title="Popular Movies" MDBConfig={this.props.config} items={currentMovieItems} /> : <PopularTVShows title="Popular TV Shows" MDBConfig={this.props.config} items={this.props.tvPopular.results}/> 
+
+        const renderCarouselType = this.props.itemType === 'MOVIE' ? <Test MDBConfig={this.props.config} items={this.props.moviesPopular.results} itemType={this.props.itemType}/> : <Test MDBConfig={this.props.config} itemType={this.props.itemType} items={this.props.tvPopular.results} />;
+
+        return ( 
+            <BrowserRouter>
+                <Header />
+                {renderCarouselType}
+                <ToggleButtons />
+                {renderShowType}
+                <Paginations items={this.props.moviesPopular.results} />
+                <Loader />
+                <Footer />
+            </BrowserRouter>
+        );
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        config: state.PostMDBConfig,
+        apiKey: state.PostMDBConfig.apiKey,
+        moviesPopular: state.postMoviePopular,
+        tvPopular: state.postTVPopular,
+        itemType: state.setItemType.itemType
+    }
+}
 
-// /discover/movie?sort_by=popularity.desc
+const mapDispatchToProps = (dispatch) => {
+    return {
+        postMDBConfig: url => dispatch(postMDBConfig(url)),
+        postMoviePopular: url => dispatch(postMoviePopular(url)),
+        postTVPopular: url => dispatch(postTVPopular(url)),
+        setItemType: type => dispatch(setItemType(type))
+    }
+}
 
-// discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-// discover/tv?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1&timezone=TW&include_null_first_air_dates=false
+//  <PopularTVShows title="Popular TV Shows" MDBConfig={this.props.config} items={this.props.tvPopular.results}/> 
