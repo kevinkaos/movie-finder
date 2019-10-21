@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/movie-finder-react/static/css/main.d94839fb.chunk.css",
-    "main.js": "/movie-finder-react/static/js/main.7f7e8c6c.chunk.js",
-    "main.js.map": "/movie-finder-react/static/js/main.7f7e8c6c.chunk.js.map",
-    "runtime-main.js": "/movie-finder-react/static/js/runtime-main.d465d342.js",
-    "runtime-main.js.map": "/movie-finder-react/static/js/runtime-main.d465d342.js.map",
-    "static/css/2.510409cd.chunk.css": "/movie-finder-react/static/css/2.510409cd.chunk.css",
-    "static/js/2.090ac18e.chunk.js": "/movie-finder-react/static/js/2.090ac18e.chunk.js",
-    "static/js/2.090ac18e.chunk.js.map": "/movie-finder-react/static/js/2.090ac18e.chunk.js.map",
-    "index.html": "/movie-finder-react/index.html",
-    "precache-manifest.e70600c0de12d8199e2bdc13ab6cd7a6.js": "/movie-finder-react/precache-manifest.e70600c0de12d8199e2bdc13ab6cd7a6.js",
-    "service-worker.js": "/movie-finder-react/service-worker.js",
-    "static/css/2.510409cd.chunk.css.map": "/movie-finder-react/static/css/2.510409cd.chunk.css.map",
-    "static/css/main.d94839fb.chunk.css.map": "/movie-finder-react/static/css/main.d94839fb.chunk.css.map",
-    "static/media/TMDBLogo.svg": "/movie-finder-react/static/media/TMDBLogo.12d095ee.svg"
+    "main.css": "/movie-finder/static/css/main.d94839fb.chunk.css",
+    "main.js": "/movie-finder/static/js/main.465e44cf.chunk.js",
+    "main.js.map": "/movie-finder/static/js/main.465e44cf.chunk.js.map",
+    "runtime-main.js": "/movie-finder/static/js/runtime-main.7aa6fc81.js",
+    "runtime-main.js.map": "/movie-finder/static/js/runtime-main.7aa6fc81.js.map",
+    "static/css/2.510409cd.chunk.css": "/movie-finder/static/css/2.510409cd.chunk.css",
+    "static/js/2.090ac18e.chunk.js": "/movie-finder/static/js/2.090ac18e.chunk.js",
+    "static/js/2.090ac18e.chunk.js.map": "/movie-finder/static/js/2.090ac18e.chunk.js.map",
+    "index.html": "/movie-finder/index.html",
+    "precache-manifest.6b6a8d8aa249917904a791708748d6da.js": "/movie-finder/precache-manifest.6b6a8d8aa249917904a791708748d6da.js",
+    "service-worker.js": "/movie-finder/service-worker.js",
+    "static/css/2.510409cd.chunk.css.map": "/movie-finder/static/css/2.510409cd.chunk.css.map",
+    "static/css/main.d94839fb.chunk.css.map": "/movie-finder/static/css/main.d94839fb.chunk.css.map",
+    "static/media/TMDBLogo.svg": "/movie-finder/static/media/TMDBLogo.12d095ee.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d465d342.js",
+    "static/js/runtime-main.7aa6fc81.js",
     "static/css/2.510409cd.chunk.css",
     "static/js/2.090ac18e.chunk.js",
     "static/css/main.d94839fb.chunk.css",
-    "static/js/main.7f7e8c6c.chunk.js"
+    "static/js/main.465e44cf.chunk.js"
   ]
 }
