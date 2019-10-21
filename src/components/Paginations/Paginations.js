@@ -48,9 +48,9 @@ class Paginations extends React.Component {
       }
 
     render() {
-        const pageBack = this.props.itemType === 'MOVIE' ? <PaginationLink previous href="javascript:void(0)" onClick={()=>{this.handleMovieClick('-'); this.handleFetchNewMovie(this.props.apiKey, this.state.moviePage)}} /> : <PaginationLink previous href="javascript:void(0)" onClick={()=>{this.handleTVClick('-'); this.handleFetchNewTV(this.props.apiKey, this.state.tvPage)}} />
+        const pageBack = this.props.itemType === 'MOVIE' ? <PaginationLink previous href="#!" onClick={(e)=>{this.handleMovieClick('-'); e.preventDefault(); this.handleFetchNewMovie(this.props.apiKey, this.state.moviePage)}} /> : <PaginationLink previous href="#!" onClick={(e)=>{this.handleTVClick('-'); e.preventDefault(); this.handleFetchNewTV(this.props.apiKey, this.state.tvPage)}} />
 
-        const pageForward = this.props.itemType === 'MOVIE' ? <PaginationLink next href="javascript:void(0)" onClick={()=>{this.handleMovieClick('+'); this.handleFetchNewMovie(this.props.apiKey, this.state.moviePage)}} /> : <PaginationLink next href="javascript:void(0)" onClick={()=>{this.handleTVClick('+'); this.handleFetchNewTV(this.props.apiKey, this.state.tvPage)}} />
+        const pageForward = this.props.itemType === 'MOVIE' ? <PaginationLink next href="#!" onClick={(e)=>{this.handleMovieClick('+'); e.preventDefault(); this.handleFetchNewMovie(this.props.apiKey, this.state.moviePage)}} /> : <PaginationLink next href="#!" onClick={(e)=>{this.handleTVClick('+'); e.preventDefault(); this.handleFetchNewTV(this.props.apiKey, this.state.tvPage)}} />
 
         return (
             <Pagination style={{marginTop: "17px", paddingLeft: "5px"}} aria-label="Page navigation">

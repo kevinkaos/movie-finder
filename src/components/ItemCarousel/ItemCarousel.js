@@ -1,20 +1,75 @@
-import React from 'react';
-import AwesomeSliderStyles from 'react-awesome-slider/src/styled/cube-animation';
-import AwesomeSlider from 'react-awesome-slider';
-import './ItemCarousel.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './ItemCarousel.scss';
+import {
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselCaption
+} from 'reactstrap';
 
-class ItemCarousel extends React.Component {
-    render() {
-        return (
-            <div className="slider__images">
-                <AwesomeSlider cssModule={AwesomeSliderStyles}>
-                    {this.props.items.map(movie => {
-                    return  <div className="linear-gradient" data-src={`${this.props.MDBConfig.images.secure_base_url}original${movie.backdrop_path}`} key={movie.id}><div className="max-zed"><h1>{movie.title}</h1></div></div>                    })}
-                </AwesomeSlider>
-            </div>
-        );
-    }
+const Test = ({ items, MDBConfig, itemType }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const next = () => {
+    if (animating) return;
+    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
+  }
+
+  const previous = () => {
+    if (animating) return;
+    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+    setActiveIndex(nextIndex);
+  }
+
+  const goToIndex = (newIndex) => {
+    if (animating) return;
+    setActiveIndex(newIndex);
+  }
+
+  const slides = itemType === 'MOVIE' ? (items.map((movie) => {
+    return (
+      <CarouselItem
+        className="carousel__item"
+        onExiting={() => setAnimating(true)}
+        onExited={() => setAnimating(false)}
+        key={movie.id}
+      ><div className="carousel__item--image">
+        <img style={{height: "90vh", width: "100%"}}src={`${MDBConfig.images.secure_base_url}original${movie.backdrop_path}`} alt={movie.title} />
+      </div>
+        <CarouselCaption captionText={movie.release_date} captionHeader={movie.title} />
+      </CarouselItem>
+    );
+  })) : (items.map((tv) => {
+    return (
+      <CarouselItem
+        className="carousel__item"
+        onExiting={() => setAnimating(true)}
+        onExited={() => setAnimating(false)}
+        key={tv.id}
+      ><div className="carousel__item--image">
+        <img style={{height: "90vh", width: "100%"}}src={`${MDBConfig.images.secure_base_url}original${tv.backdrop_path}`} alt={tv.name} />
+      </div>
+        <CarouselCaption captionText={tv.first_air_date} captionHeader={tv.name} />
+      </CarouselItem>
+    );
+  }))
+
+  return (
+    <Carousel
+      activeIndex={activeIndex}
+      next={next}
+      previous={previous}
+    >
+      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+      {slides}
+      <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+      <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+    </Carousel>
+  );
 }
 
-
-export default ItemCarousel;
+export default Test;

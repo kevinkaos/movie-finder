@@ -1,6 +1,8 @@
 import React from 'react';
 import './PopularMovies.scss';
 import { Media } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 
 class PopularMovies extends React.Component {
 
@@ -32,30 +34,33 @@ class PopularMovies extends React.Component {
     }
 
     render() {
+
         return (
-            this.props.items.map(movie => {
-                return( 
                 <React.Fragment>
-                    <div key={movie.id} className="popular__movies-list--container">
-                    <Media>
-                        <Media left top href="#">
-                        <Media object src={`${this.props.MDBConfig.images.secure_base_url}w92${movie.poster_path}`} alt={movie.title}/>
-                        </Media>
-                        <Media body>
-                        <Media heading>
-                            {movie.title}
-                        </Media>
-                            <p>
+                    <div className="popular__movies-list--container">
+                    {this.props.items.map(movie => {
+                        return (
+                            <Media key={movie.id}>
+                            <Media left top href="#">
+                                <Link style={{ textDecoration: 'none' }} to={`/details/${this.props.type.toLowerCase()}/${movie.id}`}>
+                                    <Media object src={`${this.props.MDBConfig.images.secure_base_url}w154${movie.poster_path}`} alt={movie.title}/>
+                                </Link>
+                            </Media>
+                            <Media body>
+                            <Link style={{ textDecoration: 'none', color: 'darkblue', display: "inline-block" }} to={`/details/${this.props.type.toLowerCase()}/${movie.id}`}>
+                                <Media heading>
+                                    {movie.title}
+                                </Media>
+                            </Link>
                                 {this.handleGetGenre(movie.genre_ids)}{movie.vote_average} Rating
-                            </p>
-                            <p>{movie.overview}</p>
+                                {movie.overview}
+                            </Media>
                         </Media>
-                    </Media>
+                    
+                        );
+                    })}
                     </div>
-                    <hr className="popular__movies-list--separator"/>
                 </React.Fragment>);
-            })
-        );
     }
 };
 

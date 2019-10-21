@@ -21,7 +21,7 @@ const SearchBar = (props) => {
   const toggleSplit = () => setSplitButtonOpen(!splitButtonOpen);
 
   return (
-    <InputGroup style={{ flexDirection: "row", justifyContent: "center", alignItems: "center",width:"100%"}}>
+    <InputGroup style={{ flexDirection: "row", justifyContent: "center", width: "50%",alignItems: "center"}}>
         <Input placeholder="Search..." />
         <InputGroupAddon addonType="append"><Button color="primary" type="submit"><FontAwesomeIcon icon="search"/></Button></InputGroupAddon>
     </InputGroup>

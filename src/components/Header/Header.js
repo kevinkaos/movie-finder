@@ -23,8 +23,8 @@ const Header = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar color="dark" dark expand="md" style={{position:"fixed", zIndex:"100", width:"100%"}}>
+    <div style={{position:"fixed", top: "0",zIndex:"100", width:"100%"}}>
+      <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/"><FontAwesomeIcon icon="film" /> Movie Finder</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <SearchBar/>
@@ -32,25 +32,24 @@ const Header = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
+              <NavLink href="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              <NavLink href="/">Profile</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Options
+                Discover
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Option 1
+                  Upcoming
                 </DropdownItem>
                 <DropdownItem>
-                  Option 2
+                  Now Playing
                 </DropdownItem>
-                <DropdownItem divider />
                 <DropdownItem>
-                  Reset
+                  Top Rated
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
