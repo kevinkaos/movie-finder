@@ -8,7 +8,9 @@ import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import './ItemDetails.scss';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Button, Icon, Segment } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react';
 
 
 
@@ -34,7 +36,6 @@ class ItemDetails extends React.Component {
             default:
                 break;
         }
-
     }
 
     render() {
@@ -42,20 +43,37 @@ class ItemDetails extends React.Component {
         return(
             <div>
                 <Header />
-                    <Card>
-                        <Image src={`${this.props.config.images.secure_base_url}w500${this.props.movieDetails.poster_path}`} wrapped ui={false} />
-                        <Card.Content>
-                        <Card.Header>{this.props.movieDetails.title}</Card.Header>
-                        <Card.Meta>
-                            <span className='date'>{this.props.movieDetails.release_date}</span>
-                        </Card.Meta>
-                        <Card.Description>
-                            {this.props.movieDetails.tagline}
-                        </Card.Description>
-                        </Card.Content>
-                        <Card.Content extra>
-                        </Card.Content>
-                    </Card>
+                <Segment placeholder style={{marginTop: "8rem"}}>
+                
+                <Grid celled>
+                    <Grid.Row>
+                    <Grid.Column width={3}>
+                        <Image src={`${this.props.config.images.secure_base_url}original${this.props.movieDetails.poster_path}`} wrapped ui />
+                    </Grid.Column>
+                    <Grid.Column width={13}>
+                            <span></span>
+                    </Grid.Column>
+                    </Grid.Row>
+
+                    <Grid.Row>
+                    <Grid.Column width={3}>
+                        <h1>{this.props.movieDetails.title}</h1>
+                        <h3>{this.props.movieDetails.release_date}</h3>
+                        <p>
+                            <blockquote>
+                                {this.props.movieDetails.tagline}
+                            </blockquote>
+                        </p>
+                    </Grid.Column>
+                    <Grid.Column width={10}>
+                        <Image src='/images/wireframe/paragraph.png' />
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Image src='/images/wireframe/image.png' />
+                    </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                </Segment>
                 <Footer />
                 <Loader />
             </div>

@@ -7,9 +7,7 @@ import App from './components/App/App';
 import Loader from './components/Loader/Loader';
 import * as serviceWorker from './serviceWorker';
 import { PersistGate } from 'redux-persist/integration/react'
-
-
-
+import 'semantic-ui-css/semantic.min.css';
 
 ReactDOM.render(
     <PersistGate loading={Loader} persistor={persistor}>
