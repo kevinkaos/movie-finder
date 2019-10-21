@@ -7,15 +7,11 @@ import { postMDBConfig } from '../../actions/PostMDBConfigAction';
 
 
 class Paginations extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
+        state = {
             moviePage: 1,
             tvPage: 1
         };
-    }
-
+ 
     componentDidMount() {
         this.props.postMDBConfig(`https://api.themoviedb.org/3/configuration?api_key=${this.props.apiKey}`);
         this.handleFetchNewMovie(this.props.apiKey);
@@ -35,11 +31,11 @@ class Paginations extends React.Component {
         if (this.state.moviePage === 1 && pageTransition === '-') {
             this.setState({ moviePage: 1 });
           } else if (pageTransition === '+') {
-            this.setState({ moviePage: this.state.moviePage + 1 })
-          } else if (pageTransition === '-') {
-            this.setState({ moviePage: this.state.moviePage - 1 })
+            this.setState({ moviePage: this.state.moviePage + 1})
+            } else if (pageTransition === '-') {
+            this.setState({ moviePage: this.state.moviePage - 1})
           }
-      }
+      };
 
       handleTVClick = pageTransition => {
         if (this.state.tvPage === 1 && pageTransition === '-') {

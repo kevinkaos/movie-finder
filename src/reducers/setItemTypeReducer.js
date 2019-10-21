@@ -1,7 +1,7 @@
 import { SET_ITEM_TYPE_MOVIE, SET_ITEM_TYPE_TV } from '../actions/types';
 
 const initialState = {
-  itemType: 'MOVIE'
+  itemType: 'TV'
 };
 
 const setItemType = (state = initialState, action) => {
