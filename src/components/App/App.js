@@ -8,7 +8,8 @@ import { getTVGenre } from '../../actions/getTVGenreAction';
 import { postMDBConfig } from '../../actions/PostMDBConfigAction';
 import setItemType from '../../actions/setItemTypeAction.js';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas, faFilm, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { fas, faFilm, faSearch } from '@fortawesome/free-solid-svg-icons';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import './App.css';
 
 library.add(fas, faFilm, faSearch);
@@ -28,6 +29,7 @@ class App extends React.Component {
 
         return ( 
         <BrowserRouter>
+            <ScrollToTop />>
             <div className="main">
                 <Route path="/" exact component={Home} />
                 <Route path="/details/:type/:id" exact component={ItemDetails} />

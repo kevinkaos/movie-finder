@@ -1,5 +1,5 @@
 // @import "./styles/variables";
-// @import "./styles/animations";
+@import "./styles/animations";
 @charset "UTF-8";
 
 /* Reset */
@@ -91,6 +91,7 @@ video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    box-sizing: border-box;
 }
 
 article,

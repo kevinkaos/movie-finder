@@ -8,9 +8,13 @@ import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import './ItemDetails.scss';
-import { Button, Icon, Segment } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 import { Grid } from 'semantic-ui-react'
-import { Card, Image } from 'semantic-ui-react';
+import { Image } from 'semantic-ui-react';
+import Swiper from 'swiper';
+import { Link } from 'react-router-dom';
+import placeholder from '../../images/placeholder.png';
+import VideoCarousel from '../VideoCarousel/VideoCarousel';
 
 
 
@@ -39,24 +43,78 @@ class ItemDetails extends React.Component {
     }
 
     render() {
-    
+
+        // Initiates carousels
+    (() => {
+        const sliderEl = document.querySelectorAll('.swiper-container');
+         if(!sliderEl){
+           return;
+         }
+         const slider = new Swiper(sliderEl, {
+            init: true,
+            spaceBetween: 14,
+            observer: true,
+            observeParents: true,
+            slidesPerView: 7,
+            loop: true,
+  
+           breakpoints: {
+             1145: {
+               slidesPerView: 5
+             },
+             699: {
+               slidesPerView: 3
+             },
+           },
+           pagination: {
+             el: '.swiper-pagination',
+             clickable: true
+           },
+           navigation: {
+             nextEl: '.swiper-button-next',
+             prevEl: '.swiper-button-prev',
+           }
+         });
+      })();
+
         return(
             <div>
                 <Header />
-                <Segment placeholder style={{marginTop: "8rem"}}>
+                <Segment placeholder style={{marginTop: "2rem"}}>
                 
                 <Grid celled>
                     <Grid.Row>
-                    <Grid.Column width={3}>
+                    <Grid.Column width={4}>
                         <Image src={`${this.props.config.images.secure_base_url}original${this.props.movieDetails.poster_path}`} wrapped ui />
                     </Grid.Column>
-                    <Grid.Column width={13}>
-                            <span></span>
+                    <Grid.Column width={12}>
+                    <div className="carousel-container">
+                            <div className="swiper-container">
+                                <h2 className="swiper-container__title">Cast</h2>
+                                <div className="swiper-wrapper">
+                                    {this.props.movieCredits.cast.map(cast => {
+                                        return (
+                                        <div key={cast.cast_id} className="swiper-slide">
+                                            <Link>
+                                                {cast.profile_path ? <img className="swiper-slide__image" src={`${this.props.config.images.secure_base_url}w154${cast.profile_path}`} alt={cast.profile_path}/> : <img className="swiper-slide__image" src={placeholder} />}
+                                                <p className="swiper-slide__title">{cast.name}</p>
+                                                <p className="swiper-slide__details">as</p>
+                                                <p className="swiper-slide__details">{cast.character}</p>
+                                            </Link>
+                                        </div>
+                                        );
+                                    })}
+                                </div>
+
+                                <div className="swiper-button-prev"></div>
+                                <div className="swiper-button-next"></div>
+                            </div>
+                        </div>
                     </Grid.Column>
                     </Grid.Row>
 
                     <Grid.Row>
-                    <Grid.Column width={3}>
+                    <Grid.Column width={4}>
                         <h1>{this.props.movieDetails.title}</h1>
                         <h3>{this.props.movieDetails.release_date}</h3>
                         <p>
@@ -65,12 +123,22 @@ class ItemDetails extends React.Component {
                             </blockquote>
                         </p>
                     </Grid.Column>
-                    <Grid.Column width={10}>
-                        <Image src='/images/wireframe/paragraph.png' />
+                    <Grid.Column width={12}>
+                        {this.props.movieReviews.results.map(result => {
+                            return (
+                                <div>
+                                    <h3>{result.author}</h3>
+                                    <p>{`${result.content.slice(0, 200)}...`}</p>
+                                    <a href={result.url}>Visit here for the full review!</a>
+                                </div>
+                            );
+                        })}
                     </Grid.Column>
-                    <Grid.Column width={3}>
-                        <Image src='/images/wireframe/image.png' />
-                    </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={16}>
+                            <VideoCarousel movieVideos={this.props.movieVideos} />
+                        </Grid.Column>
                     </Grid.Row>
                 </Grid>
                 </Segment>
