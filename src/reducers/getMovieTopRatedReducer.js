@@ -1,6 +1,8 @@
 import { GET_MOVIE_TOP_RATED } from '../actions/types';
 
-const initialState = [];
+const initialState = {
+    result: []
+};
 
 const getMovieTopRated = (state = initialState, action) => {
     switch(action.type) {

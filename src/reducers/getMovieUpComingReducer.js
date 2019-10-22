@@ -1,6 +1,8 @@
 import { GET_MOVIE_UP_COMING } from '../actions/types';
 
-const initialState = [];
+const initialState = {
+    result: []
+};
 
 const getMovieUpComing = (state = initialState, action) => {
     switch(action.type) {

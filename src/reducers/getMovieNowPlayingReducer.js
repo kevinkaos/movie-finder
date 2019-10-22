@@ -1,6 +1,8 @@
 import { GET_MOVIE_NOW_PLAYING } from '../actions/types';
 
-const initialState = [];
+const initialState = {
+    result: []
+};
 
 const getMovieNowPlaying = (state = initialState, action) => {
     switch(action.type) {
