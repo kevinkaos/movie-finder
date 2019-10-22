@@ -31,8 +31,10 @@ class App extends React.Component {
         <BrowserRouter>
             <ScrollToTop />>
             <div className="main">
+
                 <Route path="/" exact component={Home} />
                 <Route path="/details/:type/:id" exact component={ItemDetails} />
+                <Route path="/category/:type" exact component="{CategoryTypes}" />
                 <Route path="/search-results/:id" exact component="{SearchResults} "/>
                 <Route path="/discover" exact component="{Discover}" />
 

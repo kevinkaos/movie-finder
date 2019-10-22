@@ -18,16 +18,16 @@ const Footer = () => {
         </header>
 
         <div className="main-footer-top-item">
-          <h3 className="main-footer-top-item__title">portfolio:</h3>
-          <p><a href="https://kevinkaos.github.io" target="_blank" rel="noopener noreferrer">kevinkaos.github.io</a></p>
+          <h3 className="main-footer-top-item__title wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">portfolio:</h3>
+          <p><a href="https://kevinkaos.github.io" target="_blank" className="wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s" rel="noopener noreferrer">kevinkaos.github.io</a></p>
         </div>
 
         <div className="main-footer-top-item">
-          <h3 className="main-footer-top-item__title">phone number:</h3>
-          <p>0963546540</p>
+          <h3 className="main-footer-top-item__title wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">phone number:</h3>
+          <p className="main-footer-top-item__title wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">0963546540</p>
         </div>
 
-        <p className="main-footer-top-copyright">Copyright &copy;2019<br /> Code by <a href="www.abwtechnologies.com" target="_blank" rel="noopener noreferrer">Kevin Kao</a></p>
+        <p className="main-footer-top-copyright wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">Copyright &copy;2019<br /> Code by <a className="main-footer-top-copyright wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s" href="www.abwtechnologies.com" target="_blank" rel="noopener noreferrer">Kevin Kao</a></p>
 
       </section>
 

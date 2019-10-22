@@ -31,8 +31,7 @@
     transform: translate3d(0, 0, 0); } }
 
 .fadeInDown {
-  animation-fill-mode: forwards;
-  animation-name: fadeInDown;
+  animation: fadeInDown .8s forwards;
   opacity: 0; }
 
 @keyframes fadeInUp {

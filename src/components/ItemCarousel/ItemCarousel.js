@@ -33,14 +33,13 @@ const Test = ({ items, MDBConfig, itemType }) => {
   const slides = itemType === 'MOVIE' ? (items.map((movie) => {
     return (
       <CarouselItem
-        className="carousel__item"
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={movie.id}
       ><div className="carousel__item--image">
         <img style={{height: "90vh", width: "100%"}}src={`${MDBConfig.images.secure_base_url}original${movie.backdrop_path}`} alt={movie.title} />
       </div>
-        <CarouselCaption captionText={movie.release_date} captionHeader={movie.title} />
+        <CarouselCaption captionText={`Released: ${movie.release_date}`} captionHeader={movie.title} />
       </CarouselItem>
     );
   })) : (items.map((tv) => {

@@ -130,6 +130,7 @@ class ItemDetails extends React.Component {
                                     <h3>{result.author}</h3>
                                     <p>{`${result.content.slice(0, 200)}...`}</p>
                                     <a href={result.url}>Visit here for the full review!</a>
+                                    <hr/>
                                 </div>
                             );
                         })}

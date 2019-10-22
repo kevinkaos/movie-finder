@@ -9,6 +9,10 @@ import getMovieDetails from './getMovieDetailsReducer';
 import getMovieCredits from './getMovieCreditsReducer';
 import getMovieReviews from './getMovieReviewsReducer';
 import getMovieVideos from './getMovieVideosReducer';
+import getMovieNowPlaying from './getMovieNowPlayingReducer';
+import getMovieTopRated from './getMovieTopRatedReducer';
+import getMovieUpComing from './getMovieUpComingReducer';
+
 
 const rootReducer = combineReducers({
     PostMDBConfig,
@@ -20,7 +24,10 @@ const rootReducer = combineReducers({
     getMovieDetails,
     getMovieCredits,
     getMovieReviews,
-    getMovieVideos
+    getMovieVideos,
+    getMovieNowPlaying,
+    getMovieTopRated,
+    getMovieUpComing
 });
 
 export default rootReducer;

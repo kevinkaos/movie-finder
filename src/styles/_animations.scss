@@ -45,8 +45,7 @@
   }
   
   .fadeInDown {
-    animation-fill-mode: forwards;
-    animation-name: fadeInDown;
+    animation: fadeInDown .8s forwards;
     opacity: 0;
   }
   

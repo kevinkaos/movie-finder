@@ -28,7 +28,6 @@ const Header = (props) => {
         <NavbarBrand href="/"><FontAwesomeIcon icon="film" /> Movie Finder</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <SearchBar/>
-        <Paginations />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
