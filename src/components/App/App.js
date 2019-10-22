@@ -25,7 +25,7 @@ class App extends React.Component {
         this.props.setItemType();
     }
 
-    render() {
+    render() {      
 
         return ( 
         <BrowserRouter>
@@ -37,7 +37,7 @@ class App extends React.Component {
                 <Route path="/category/:type" exact component="{CategoryTypes}" />
                 <Route path="/search-results/:id" exact component="{SearchResults} "/>
                 <Route path="/discover" exact component="{Discover}" />
-
+                
                 <Switch>
 
                     {/* Hanlde routing for authentication */}

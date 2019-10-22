@@ -22,10 +22,12 @@ class ItemDetails extends React.Component {
 
     componentDidMount() {
         this.fetchData(this.props.match.params.id);
+        console.log(this.props.match.params.id);
+        console.log(this.props.match.params.type);
     }
 
 
-    fetchData(id, type = this.props.match.params.type) {
+    fetchData(id, type = this.props.match.params.type.toLowerCase()) {
         switch(type){
             case 'movie':
                 this.props.getMovieDetails(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.props.apiKey}&language=en-US`)

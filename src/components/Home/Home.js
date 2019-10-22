@@ -94,7 +94,7 @@ class Home extends React.Component {
         const renderCarouselType = this.props.itemType === 'MOVIE' ? <ItemCarousel MDBConfig={this.props.config} items={this.props.moviesPopular.results} itemType={this.props.itemType}/> : <ItemCarousel MDBConfig={this.props.config} itemType={this.props.itemType} items={this.props.tvPopular.results} />;
 
         return (
-        <div className="home-container" style={{marginTop: "30px"}}>
+        <div className="home-container" style={{marginTop: "30px", backgroundColor: "white"}}>
             <Header />
             <div >
                 {renderCarouselType}
