@@ -6,17 +6,7 @@ import { Link } from 'react-router-dom';
 
 class PopularMovies extends React.Component {
 
-    // handleGetGenre = genreId => {
-    //     let mainGenre;
-    //     if (this.props.movieGenres.genres) {
-    //       this.props.movieGenres.genres.forEach(genre => {
-    //         if (genre.id === genreId[0]) {
-    //           mainGenre = genre.name;
-    //         }
-    //       });
-    //     }
-    //     return mainGenre;
-    //   }
+// {this.handleGetGenre(movie.genre_ids)}{movie.vote_average} Rating
 
       handleGetGenre = genreIds => {
         if (this.props.movieGenres.genres) {
@@ -34,33 +24,28 @@ class PopularMovies extends React.Component {
     }
 
     render() {
-
+          
         return (
-                <React.Fragment>
-                    <div className="popular__movies-list--container">
-                    {this.props.items.map(movie => {
-                        return (
-                            <Media key={movie.id}>
-                            <Media left top href="#">
-                                <Link style={{ textDecoration: 'none' }} to={`/details/${this.props.type.toLowerCase()}/${movie.id}`}>
-                                    <Media object src={`${this.props.MDBConfig.images.secure_base_url}w154${movie.poster_path}`} alt={movie.title}/>
-                                </Link>
-                            </Media>
-                            <Media body>
-                            <Link style={{ textDecoration: 'none', color: 'darkblue', display: "inline-block" }} to={`/details/${this.props.type.toLowerCase()}/${movie.id}`}>
-                                <Media heading>
-                                    {movie.title}
-                                </Media>
-                            </Link>
-                                {this.handleGetGenre(movie.genre_ids)}{movie.vote_average} Rating
-                                {movie.overview}
-                            </Media>
-                        </Media>
-                    
-                        );
-                    })}
-                    </div>
-                </React.Fragment>);
+        <div className="swiper-container">
+            <div className="swiper-wrapper">
+                {this.props.items.map(movie => {
+                    return (
+            <Link style={{ textDecoration: 'none' }} to={`/details/${this.props.type.toLowerCase()}/${movie.id}`}>
+                <div className="swiper-slide">
+                    <img className="swiper-slide__image" src={`${this.props.MDBConfig.images.secure_base_url}w154${movie.poster_path}`} alt={movie.title}/>
+                    <p className="swiper-slide__title">{movie.title}</p>
+                </div>
+            </Link>
+                    );
+                })}
+                
+            </div>
+            <div className="swiper-pagination"></div>
+
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
+        </div>
+        );
     }
 };
 

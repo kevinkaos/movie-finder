@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { postMoviePopular } from '../../actions/postMoviePopularAction';
 import { postTVPopular } from '../../actions/postTVPopularAction';
 import setItemType from '../../actions/setItemTypeAction.js';
+import Swiper from 'swiper';
 
 
 class Home extends React.Component {
@@ -22,6 +23,38 @@ class Home extends React.Component {
     }
 
     render() {
+
+                //initiate sliders
+                (() => {
+                    const sliderEl = document.querySelectorAll('.swiper-container');
+                     if(!sliderEl){
+                       return;
+                     }
+                     const slider = new Swiper(sliderEl, {
+                       init: true,
+                       slidesPerView: 5,
+                       loop: true,
+                       spaceBetween: 30,
+                       observer: true,
+              
+                       breakpoints: {
+                         768: {
+                           slidesPerView: 5
+                         },
+                         640: {
+                           slidesPerView: 3
+                         },
+                       },
+                       pagination: {
+                         el: '.swiper-pagination',
+                         clickable: true
+                       },
+                       navigation: {
+                         nextEl: '.swiper-button-next',
+                         prevEl: '.swiper-button-prev',
+                       }
+                     });
+                  })();
 
         const renderShowType = this.props.itemType === 'MOVIE' ? <PopularMovies type={this.props.itemType} movieGenres={this.props.movieGenres} title="Popular Movies" MDBConfig={this.props.config} items={this.props.moviesPopular.results} /> : <PopularTVShows type={this.props.itemType} tvGenres={this.props.tvGenres} title="Popular TV Shows" MDBConfig={this.props.config} items={this.props.tvPopular.results}/> 
 
