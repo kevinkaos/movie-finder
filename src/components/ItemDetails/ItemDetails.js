@@ -20,10 +20,14 @@ import VideoCarousel from '../VideoCarousel/VideoCarousel';
 
 class ItemDetails extends React.Component {
 
-    componentDidMount() {
+    // componentDidMount() {
+    //     this.fetchData(this.props.match.params.id);
+    // }
+
+    UNSAFE_componentWillMount() {
         this.fetchData(this.props.match.params.id);
         console.log(this.props.match.params.id);
-        console.log(this.props.match.params.type);
+        console.log(this.props.match.params.type.toLowerCase());
     }
 
 
