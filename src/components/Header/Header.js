@@ -17,7 +17,7 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
-const Header = (props) => {
+const MyHeader = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -27,7 +27,7 @@ const Header = (props) => {
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/"><FontAwesomeIcon icon="film" /> Movie Finder</NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <SearchBar/>
+        {/* <SearchBar/> */}
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
@@ -59,4 +59,4 @@ const Header = (props) => {
   );
 }
 
-export default Header;
+export default MyHeader;

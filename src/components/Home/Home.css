@@ -1,2 +1,9 @@
 .btn--animated {
   animation: fadeIn .8s; }
+
+.home-container {
+  background: black; }
+
+.home-container-main {
+  max-width: 80%;
+  margin: 0 auto; }

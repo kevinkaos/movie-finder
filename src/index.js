@@ -9,12 +9,13 @@ import * as serviceWorker from './serviceWorker';
 import { PersistGate } from 'redux-persist/integration/react'
 import 'semantic-ui-css/semantic.min.css';
 
+
 ReactDOM.render(
-    <PersistGate loading={Loader} persistor={persistor}>
         <Provider store={store}>
-            <App />
-        </Provider> 
-    </PersistGate>,
+            <PersistGate  loading={Loader} persistor={persistor}> 
+                    <App />
+            </PersistGate>
+        </Provider>,
 document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

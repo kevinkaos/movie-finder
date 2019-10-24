@@ -12,6 +12,9 @@ import getMovieVideos from './getMovieVideosReducer';
 import getMovieNowPlaying from './getMovieNowPlayingReducer';
 import getMovieTopRated from './getMovieTopRatedReducer';
 import getMovieUpComing from './getMovieUpComingReducer';
+import getPeoplePopular from './getPeoplePopularReducer';
+import getPeopleCombinedCredits from './getPeopleCombinedCreditsReducer';
+import getPeopleDetails from './getPeopleDetailsReducer';
 
 
 const rootReducer = combineReducers({
@@ -27,7 +30,10 @@ const rootReducer = combineReducers({
     getMovieVideos,
     getMovieNowPlaying,
     getMovieTopRated,
-    getMovieUpComing
+    getMovieUpComing,
+    getPeopleCombinedCredits,
+    getPeoplePopular,
+    getPeopleDetails
 });
 
 export default rootReducer;

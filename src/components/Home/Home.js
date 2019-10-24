@@ -1,6 +1,6 @@
 import './Home.scss';
 import React from 'react';
-import Header from '../Header/Header';
+import MyHeader from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Loader from '../Loader/Loader';
 import PopularMovies from '../PopularMovies/PopularMovies';
@@ -52,15 +52,25 @@ class Home extends React.Component {
             spaceBetween: 14,
             observer: true,
             observeParents: true,
-            slidesPerView: 7,
+            slidesPerView: 5,
             loop: false,
            breakpoints: {
-             1145: {
-               slidesPerView: 5
+             320: {
+                 slidesPerView: 1,
+                 spaceBetween: 15
              },
-             699: {
-               slidesPerView: 3
+             480: {
+                 slidesPerView: 2,
+                 spaceBetween: 20
              },
+             640: {
+                 slidesPerView: 3,
+                spaceBetween: 25
+             },
+             1024: {
+                 slidesPerView: 5,
+                 spaceBetween: 15
+             }
            },
            pagination: {
              el: '.swiper-pagination',
@@ -94,8 +104,8 @@ class Home extends React.Component {
         const renderCarouselType = this.props.itemType === 'MOVIE' ? <ItemCarousel MDBConfig={this.props.config} items={this.props.moviesPopular.results} itemType={this.props.itemType}/> : <ItemCarousel MDBConfig={this.props.config} itemType={this.props.itemType} items={this.props.tvPopular.results} />;
 
         return (
-        <div className="home-container" style={{marginTop: "30px", backgroundColor: "white"}}>
-            <Header />
+        <div className="home-container" style={{marginTop: "30px"}}>
+            <MyHeader />
             <div >
                 {renderCarouselType}
             </div>

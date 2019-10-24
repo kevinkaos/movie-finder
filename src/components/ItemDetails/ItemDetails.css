@@ -642,3 +642,10 @@ body {
   align-items: center; }
   .swiper-slide__image {
     border-radius: 1rem; }
+  .swiper-slide__title {
+    margin-bottom: 0; }
+  .swiper-slide__details {
+    margin-bottom: 0; }
+
+p {
+  line-height: 2.5rem; }

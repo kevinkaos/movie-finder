@@ -27,15 +27,17 @@ class PopularMovies extends React.Component {
         return (
     <div className="carousel-container">
         <div className="swiper-container">
-            <h2 className="swiper-container__title wow fadeInDown" data-wow-delay=".5s" data-wow-duration="1s">{this.props.titleType}</h2>
+            <h2 className="swiper-container__title wow fadeInDown" style={{color: "white"}} data-wow-delay=".5s" data-wow-duration="1s">{this.props.titleType}</h2>
             <div className="swiper-wrapper">
                 {this.props.items.map(movie => {
                     return (
-                    <div key={movie.id} className="swiper-slide">
-                        <Link to={`/details/${this.props.type.toLowerCase()}/${movie.id}`}>
-                            <img className="swiper-slide__image wow fadeInDown" data-wow-delay=".5s" data-wow-duration="1s" src={`${this.props.MDBConfig.images.secure_base_url}w154${movie.poster_path}`} alt={movie.title}/>
-                            <p className="swiper-slide__title wow fadeIn" data-wow-delay=".5s" data-wow-duration="1s" >{movie.title}</p>
-                            {this.handleGetGenre(movie.genre_ids)}
+                    <div key={movie.id} style={{background: "black"}} className="swiper-slide">
+                        <Link id="link" style={{color: "rgba(255, 255, 255, .7)"}} to={`/details/${this.props.type.toLowerCase()}/${movie.id}`}>
+                            <div className="item">
+                                <img className="swiper-slide__image wow fadeInDown" data-wow-delay=".5s" data-wow-duration="1s" src={`${this.props.MDBConfig.images.secure_base_url}w154${movie.poster_path}`} alt={movie.title}/>
+                                <p className="swiper-slide__title wow fadeIn" data-wow-delay=".5s" data-wow-duration="1s" >{movie.title}</p>
+                                {this.handleGetGenre(movie.genre_ids)}
+                            </div>
                         </Link>
                     </div>
                     );

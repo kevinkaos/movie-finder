@@ -11,6 +11,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas, faFilm, faSearch } from '@fortawesome/free-solid-svg-icons';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import './App.css';
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory({
+    basename: '/', 
+    forceRefresh: false, 
+    keyLength: 6, });
+
+
 
 library.add(fas, faFilm, faSearch);
 
@@ -28,9 +36,10 @@ class App extends React.Component {
     render() {      
 
         return ( 
-        <BrowserRouter>
+        <BrowserRouter history={history}>
             <ScrollToTop />>
             <div className="main">
+            
 
                 <Route path="/" exact component={Home} />
                 <Route path="/details/:type/:id" exact component={ItemDetails} />

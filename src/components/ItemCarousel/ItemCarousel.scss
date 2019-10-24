@@ -16,12 +16,26 @@
         left: 0;
         background: repeating-linear-gradient(
                 to right,
-                rgba(0, 0, 0, 0.2),
-                rgba(0, 0, 0, 0.2)
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.6)
             )
             center top no-repeat;
         pointer-events: none;
         content: "";
         background-size: cover, cover;
     }
+
+   
 }
+
+.carousel__item > img { 
+    width: 100%; 
+  }
+
+  .carousel-item, .carousel-item.active {
+    align-items:center;
+}
+
+.carousel-control-prev,.carousel-control-next {
+    cursor:pointer;
+  }

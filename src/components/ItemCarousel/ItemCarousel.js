@@ -37,7 +37,7 @@ const Test = ({ items, MDBConfig, itemType }) => {
         onExited={() => setAnimating(false)}
         key={movie.id}
       ><div className="carousel__item--image">
-        <img style={{height: "90vh", width: "100%"}}src={`${MDBConfig.images.secure_base_url}original${movie.backdrop_path}`} alt={movie.title} />
+        <img className="d-block w-100" style={{maxHeight: "90vh"}} src={`${MDBConfig.images.secure_base_url}original${movie.backdrop_path}`} alt={movie.title} />
       </div>
         <CarouselCaption captionText={`Released: ${movie.release_date}`} captionHeader={movie.title} />
       </CarouselItem>
@@ -50,7 +50,7 @@ const Test = ({ items, MDBConfig, itemType }) => {
         onExited={() => setAnimating(false)}
         key={tv.id}
       ><div className="carousel__item--image">
-        <img style={{height: "90vh", width: "100%"}}src={`${MDBConfig.images.secure_base_url}original${tv.backdrop_path}`} alt={tv.name} />
+        <img className="d-block w-100" style={{maxHeight: "90vh"}}src={`${MDBConfig.images.secure_base_url}original${tv.backdrop_path}`} alt={tv.name} />
       </div>
         <CarouselCaption captionText={tv.first_air_date} captionHeader={tv.name} />
       </CarouselItem>

@@ -19,7 +19,7 @@ const Footer = () => {
 
         <div className="main-footer-top-item">
           <h3 className="main-footer-top-item__title wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">portfolio:</h3>
-          <p><a href="https://kevinkaos.github.io" target="_blank" className="wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s" rel="noopener noreferrer">kevinkaos.github.io</a></p>
+          <p><a href="http://www.kkaotech.com" target="_blank" className="wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s" rel="noopener noreferrer">www.kkaotech.com</a></p>
         </div>
 
         <div className="main-footer-top-item">

@@ -40,4 +40,20 @@ body {
     &__image {
         border-radius: 1rem;
     }
+
+    &__title {
+        margin-bottom: 0;
+    }
+
+    &__details {
+        margin-bottom: 0;
+    }
+}
+
+.ui.grid {
+
+}
+
+p {
+    line-height: 2.5rem;
 }
