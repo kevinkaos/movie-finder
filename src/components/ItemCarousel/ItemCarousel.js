@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './ItemCarousel.scss';
+import './ItemCarousel.css';
 import {
   Carousel,
   CarouselItem,
@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 
 const Test = ({ items, MDBConfig, itemType }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(~~(Math.random() * 25) + 1);
   const [animating, setAnimating] = useState(false);
 
   const next = () => {
@@ -37,7 +37,9 @@ const Test = ({ items, MDBConfig, itemType }) => {
         onExited={() => setAnimating(false)}
         key={movie.id}
       ><div className="carousel__item--image">
-        <img className="d-block w-100" style={{maxHeight: "90vh"}} src={`${MDBConfig.images.secure_base_url}original${movie.backdrop_path}`} alt={movie.title} />
+            <Link to={`/details/${itemType.toLowerCase()}/${movie.id}`}>
+                <img className="d-block w-100" style={{maxHeight: "100vh"}} src={`${MDBConfig.images.secure_base_url}original${movie.backdrop_path}`} alt={movie.title} />
+            </Link>
       </div>
         <CarouselCaption captionText={`Released: ${movie.release_date}`} captionHeader={movie.title} />
       </CarouselItem>
@@ -50,7 +52,9 @@ const Test = ({ items, MDBConfig, itemType }) => {
         onExited={() => setAnimating(false)}
         key={tv.id}
       ><div className="carousel__item--image">
-        <img className="d-block w-100" style={{maxHeight: "90vh"}}src={`${MDBConfig.images.secure_base_url}original${tv.backdrop_path}`} alt={tv.name} />
+        <Link to={`/details/${itemType.toLowerCase()}/${tv.id}`}>
+            <img className="d-block w-100" style={{maxHeight: "100vh"}}src={`${MDBConfig.images.secure_base_url}original${tv.backdrop_path}`} alt={tv.name} />
+        </Link>
       </div>
         <CarouselCaption captionText={tv.first_air_date} captionHeader={tv.name} />
       </CarouselItem>

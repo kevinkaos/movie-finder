@@ -1,6 +1,6 @@
 import React from 'react';
 import TMDBLogo from './images/TMDBLogo.svg';
-import './Footer.scss';
+import './Footer.css';
 
 const Footer = () => {
   return(

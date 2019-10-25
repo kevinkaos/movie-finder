@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import 'bootstrap/dist/css/bootstrap.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './Header.scss';
+import './Header.css';
 import Paginations from '../Paginations/Paginations';
 import {
   Collapse,

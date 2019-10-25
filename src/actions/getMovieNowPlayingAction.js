@@ -1,7 +1,7 @@
 import { GET_MOVIE_NOW_PLAYING } from './types';
 
 export const getMovieNowPlaying = url => dispatch => {
-    fetch(url)
+    return fetch(url)
     .then(res => res.json())
     .then(data => dispatch(saveMovieNowPlaying(data)))
     .catch(error => {

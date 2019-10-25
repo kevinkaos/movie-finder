@@ -1,7 +1,7 @@
 import { POST_MOVIE_POPULAR } from './types';
 
 export const postMoviePopular = url => dispatch => {
-    fetch(url)
+    return fetch(url)
     .then(res => res.json())
     .then(data => dispatch(saveMoviePopular(data)))
     .catch(error => {

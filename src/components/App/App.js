@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getMovieGenre } from '../../actions/getMovieGenreAction';
 import { getTVGenre } from '../../actions/getTVGenreAction';
 import { postMDBConfig } from '../../actions/PostMDBConfigAction';
-import setItemType from '../../actions/setItemTypeAction.js';
+import setItemType from '../../actions/setItemTypeAction';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas, faFilm, faSearch } from '@fortawesome/free-solid-svg-icons';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
@@ -29,15 +29,15 @@ class App extends React.Component {
         this.props.getMovieGenre(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.props.apiKey}&language=en-US
         `);
         this.props.getTVGenre(`https://api.themoviedb.org/3/genre/tv/list?api_key=${this.props.apiKey}&language=en-US
-        `);       
-        this.props.setItemType();
+        `);
+        this.props.setItemType('MOVIE');      
     }
 
     render() {      
 
         return ( 
         <BrowserRouter history={history}>
-            <ScrollToTop />>
+            <ScrollToTop />
             <div className="main">
             
 
@@ -75,9 +75,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         postMDBConfig: url => dispatch(postMDBConfig(url)),
-        setItemType: type => dispatch(setItemType(type)),
         getMovieGenre: url => dispatch(getMovieGenre(url)),
-        getTVGenre: url => dispatch(getTVGenre(url))
+        getTVGenre: url => dispatch(getTVGenre(url)),
+        setItemType: type => dispatch(setItemType(type))
     }
 }
 

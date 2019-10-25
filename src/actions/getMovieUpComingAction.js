@@ -1,7 +1,7 @@
 import { GET_MOVIE_UP_COMING } from './types';
 
 export const getMovieUpComing = url => dispatch => {
-    fetch(url)
+   return fetch(url)
     .then(res => res.json())
     .then(data => dispatch(saveMovieUpComing(data)))
     .catch(error => {

@@ -1,12 +1,12 @@
-import { GET_MOVIE_NOW_PLAYING } from '../actions/types';
+import { GET_TV_TOP_RATED } from '../actions/types';
 
 const initialState = {
     results: []
 };
 
-const getMovieNowPlaying = (state = initialState, action) => {
+const getTVTopRated = (state = initialState, action) => {
     switch(action.type) {
-        case GET_MOVIE_NOW_PLAYING:
+        case GET_TV_TOP_RATED:
             return {
                 ...state,
                 ...action.payload
@@ -16,4 +16,4 @@ const getMovieNowPlaying = (state = initialState, action) => {
     }
 }
 
-export default getMovieNowPlaying;
+export default getTVTopRated;

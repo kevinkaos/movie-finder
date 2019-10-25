@@ -1,5 +1,5 @@
 import React from 'react';
-import './PopularMovies.scss';
+import './PopularMovies.css';
 import { Link } from 'react-router-dom';
 
 
@@ -23,7 +23,7 @@ class PopularMovies extends React.Component {
     }
 
     render() {
-
+        if (!this.props.items) return null
         return (
     <div className="carousel-container">
         <div className="swiper-container">

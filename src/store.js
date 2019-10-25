@@ -4,6 +4,11 @@ import rootReducer from './reducers/rootReducer';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';
+
+const composeEnhancers = composeWithDevTools({
+  // options like actionSanitizer, stateSanitizer
+});
 
 const persistConfig = {
     key: 'root',
@@ -15,7 +20,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const middleware = [thunk];
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(...middleware)));
 export const persistor = persistStore(store);

@@ -1,6 +1,6 @@
 import React from 'react';
 import Swiper from 'swiper';
-import './VideoCarousel.scss';
+import './VideoCarousel.css';
 
 class VideoCarousel extends React.Component {
     render() {
@@ -48,9 +48,9 @@ class VideoCarousel extends React.Component {
             <div className="trailer-carousel">
                 <div className="trailer-swiper-container">
                 <div className="swiper-wrapper">
-                    <div key={video.key} className="swiper-slide videoWrapper">
+                    {this.props.movieVideos.results[0] ? <div key={video.key} className="swiper-slide videoWrapper">
                         <iframe src={`https://www.youtube.com/embed/${video.key}`}></iframe>
-                    </div>
+                    </div> : '' }
                 </div>
 {/* 
                 <div className="swiper-button-prev"></div>

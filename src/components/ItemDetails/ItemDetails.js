@@ -1,5 +1,4 @@
 import React from 'react';
-import Loader from '../Loader/Loader';
 import { getMovieDetails } from '../../actions/getMovieDetailsAction';
 import { getMovieCredits } from '../../actions/getMovieCreditsAction';
 import { getMovieReviews } from '../../actions/getMovieReviewsAction';
@@ -9,7 +8,7 @@ import { getPeopleCombinedCredits } from '../../actions/getPeopleCombinedCredits
 import { connect } from 'react-redux';
 import MyHeader from '../Header/Header';
 import Footer from '../Footer/Footer';
-import './ItemDetails.scss';
+import './ItemDetails.css';
 import { Header, Grid, Container, Button, Icon, Segment, Image } from 'semantic-ui-react'
 import Swiper from 'swiper';
 import { Link, withRouter } from 'react-router-dom';
@@ -37,6 +36,7 @@ class ItemDetails extends React.Component {
   
     // Add more to the limit of rendered content
     renderPeopleCredits = () => {
+        if (!this.props.peopleCredits.cast) return null;
         return this.props.peopleCredits.cast.slice(0,this.state.limit).map((role)=>{
             return(
                 <Grid className="stackable" style={{borderBottom: "1px solid black", margin: "2rem 0rem 0rem 1rem"}}>
@@ -73,17 +73,19 @@ class ItemDetails extends React.Component {
         this.fetchData(this.props.match.params.id);
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (nextProps.match.params.id !== this.props.match.params.id) {
-            this.fetchData(nextProps.match.params.id, nextProps.match.params.type);
-        }
-    }
+    // UNSAFE_componentWillReceiveProps(nextProps) {
+    //     if (nextProps.match.params.id !== this.props.match.params.id) {
+    //         this.fetchData(nextProps.match.params.id, nextProps.match.params.type);
+    //     }
+    // } 
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.id !== this.props.match.params.id) {
             this.fetchData(this.props.match.params.id, this.props.match.params.type);
         }
     }
+
+    
 
     fetchData(id, type = this.props.match.params.type.toLowerCase()) {
         switch(type){
@@ -179,7 +181,7 @@ class ItemDetails extends React.Component {
              return (
                 <div>
             <MyHeader />
-                <Grid style={{margin: "2rem 0rem 0rem 1rem", borderBottom: "1px solid black"}} className="stackable">
+                <Grid style={{margin: "4rem 0rem 0rem 1rem", borderBottom: "1px solid black"}} className="stackable">
                     <Grid.Column width={5}>
                         <Image src={`${this.props.config.images.secure_base_url}h632${this.props.peopleDetails.profile_path}`} />
                     </Grid.Column>
@@ -216,7 +218,7 @@ class ItemDetails extends React.Component {
     }
 
     render() {
-
+        
         // Initiates carousels
     (() => {
         const sliderEl = document.querySelectorAll('.swiper-container');
@@ -265,7 +267,7 @@ class ItemDetails extends React.Component {
       })();
 
         
-
+      if (!this.props.movieCredits) return null
         return(
             <div>{this.handleRenderContent(this.props.match.params.type)}</div>
         );
