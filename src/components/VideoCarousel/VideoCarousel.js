@@ -41,14 +41,14 @@ class VideoCarousel extends React.Component {
         //        }
         //      });
         //   })();
-
-        const video = this.props.movieVideos.results[0];
+        if(!this.props.tvVideos) return null;
+        const video = this.props.tvVideos.results[0];
 
         return (
             <div className="trailer-carousel">
                 <div className="trailer-swiper-container">
                 <div className="swiper-wrapper">
-                    {this.props.movieVideos.results[0] ? <div key={video.key} className="swiper-slide videoWrapper">
+                    {this.props.tvVideos.results[0] ? <div key={video.key} className="swiper-slide videoWrapper">
                         <iframe src={`https://www.youtube.com/embed/${video.key}`}></iframe>
                     </div> : '' }
                 </div>

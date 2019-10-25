@@ -3,6 +3,10 @@ import { getMovieDetails } from '../../actions/getMovieDetailsAction';
 import { getMovieCredits } from '../../actions/getMovieCreditsAction';
 import { getMovieReviews } from '../../actions/getMovieReviewsAction';
 import { getMovieVideos } from '../../actions/getMovieVideosAction';
+import { getTVDetails } from '../../actions/getTVDetailsAction';
+import { getTVCredits } from '../../actions/getTVCreditsAction';
+import { getTVReviews } from '../../actions/getTVReviewsAction';
+import { getTVVideos } from '../../actions/getTVVideosAction';
 import { getPeopleDetails } from '../../actions/getPeopleDetailsAction';
 import { getPeopleCombinedCredits } from '../../actions/getPeopleCombinedCreditsAction';
 import { connect } from 'react-redux';
@@ -96,12 +100,14 @@ class ItemDetails extends React.Component {
                 this.props.getMovieVideos(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${this.props.apiKey}&language=en-US`)
                 break;
             case 'tv':
+                this.props.getTVDetails(`https://api.themoviedb.org/3/tv/${id}?api_key=${this.props.apiKey}&language=en-US`);
+                this.props.getTVCredits(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${this.props.apiKey}&language=en-US`);
+                this.props.getTVReviews(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${this.props.apiKey}&language=en-US&page=1`);
+                this.props.getTVVideos(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${this.props.apiKey}&language=en-US`);
                 break;
             case 'people':
-                this.props.getPeopleCombinedCredits(`https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${this.props.apiKey}&language=en-US
-                `);
-                this.props.getPeopleDetails(`https://api.themoviedb.org/3/person/${id}?api_key=${this.props.apiKey}&language=en-US
-                `);
+                this.props.getPeopleCombinedCredits(`https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${this.props.apiKey}&language=en-US`);
+                this.props.getPeopleDetails(`https://api.themoviedb.org/3/person/${id}?api_key=${this.props.apiKey}&language=en-US`);
                 break;
             default:
                 break;
@@ -177,8 +183,75 @@ class ItemDetails extends React.Component {
             <Footer />
         </div>
             )
+            case 'tv':
+                return (
+                    <div>
+            <MyHeader />
+            <Segment className="stackable" placeholder style={{marginTop: "2rem"}}>
+            
+            <Grid className="stackable" celled>
+                <Grid.Row>
+                <Grid.Column width={4}>
+                    <Image src={`${this.props.config.images.secure_base_url}original${this.props.tvDetails.poster_path}`} wrapped ui />
+                </Grid.Column>
+                <Grid.Column width={12}>
+                <div className="carousel-container">
+                        <div className="swiper-container">
+                            <h2 className="swiper-container__title">Cast</h2>
+                            <div className="swiper-wrapper">
+                                {this.props.tvCredits.cast.map(cast => {
+                                    return (
+                                    <div key={cast.cast_id} className="swiper-slide">
+                                        <Link to={`/details/people/${cast.id}`}>
+                                            {cast.profile_path ? <img className="swiper-slide__image" src={`${this.props.config.images.secure_base_url}w154${cast.profile_path}`} alt={cast.profile_path}/> : <img className="swiper-slide__image" src={placeholder} />}
+                                            <p className="swiper-slide__title">{cast.name}</p>
+                                            <p className="swiper-slide__details">as</p>
+                                            <p className="swiper-slide__details">{cast.character}</p>
+                                        </Link>
+                                    </div>
+                                    );
+                                })}
+                            </div>
+
+                            <div className="swiper-button-prev"></div>
+                            <div className="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </Grid.Column>
+                </Grid.Row>
+
+                <Grid.Row>
+                <Grid.Column width={4}>
+                    <h1>{this.props.tvDetails.title}</h1>
+                    <h3>{this.props.tvDetails.release_date}</h3>
+                    <p>
+                        <blockquote>
+                            {this.props.tvDetails.tagline}
+                        </blockquote>
+                    </p>
+                </Grid.Column>
+                <Grid.Column width={12}>
+                    {this.props.tvReviews.results.length > 0 ? this.props.tvReviews.results.map(result =>
+                        {
+                            return (<div><h3>{result.author}</h3>
+                                    <p>{`${result.content.slice(0, 200)}...`}</p>
+                                    <a href={result.url}>Visit here for the full review!</a>
+                                    <hr/></div>)
+                                 }) : (<div><p>Sorry there are no reviews here...</p></div>) }
+                </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column width={16}>
+                        <VideoCarousel tvVideos={this.props.tvVideos} />
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+            </Segment>
+            <Footer />
+        </div>
+                )
             case 'people': 
-             return (
+                return (
                 <div>
             <MyHeader />
                 <Grid style={{margin: "4rem 0rem 0rem 1rem", borderBottom: "1px solid black"}} className="stackable">
@@ -266,8 +339,9 @@ class ItemDetails extends React.Component {
          });
       })();
 
-        
-      if (!this.props.movieCredits) return null
+        // PREVENTS CRASH theoretically by allowing for fetching time.
+      if (!this.props.movieCredits) return null;
+      if (!this.props.tvCredits) return null;
         return(
             <div>{this.handleRenderContent(this.props.match.params.type)}</div>
         );
@@ -288,7 +362,11 @@ const mapStateToProps = (state) => {
         movieReviews: state.getMovieReviews,
         movieVideos: state.getMovieVideos,
         peopleCredits: state.getPeopleCombinedCredits,
-        peopleDetails: state.getPeopleDetails
+        peopleDetails: state.getPeopleDetails,
+        tvDetails: state.getTVDetails,
+        tvCredits: state.getTVCredits,
+        tvReviews: state.getTVReviews,
+        tvVideos: state.getTVVideos
     }
 }
 
@@ -299,7 +377,11 @@ const mapDispatchToProps = (dispatch) => {
         getMovieReviews: url => dispatch(getMovieReviews(url)),
         getMovieVideos: url => dispatch(getMovieVideos(url)),
         getPeopleDetails: url => dispatch(getPeopleDetails(url)),
-        getPeopleCombinedCredits: url => dispatch(getPeopleCombinedCredits(url))
+        getPeopleCombinedCredits: url => dispatch(getPeopleCombinedCredits(url)),
+        getTVDetails: url => dispatch(getTVDetails(url)),
+        getTVCredits: url => dispatch(getTVCredits(url)),
+        getTVReviews: url => dispatch(getTVReviews(url)),
+        getTVVideos: url => dispatch(getTVVideos(url))
     }
 }
 
