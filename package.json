@@ -73,6 +73,7 @@
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-react": "^0.88.1",
         "semver": "6.3.0",
+        "serve": "^11.3.2",
         "style-loader": "1.0.0",
         "swiper": "^5.1.0",
         "terser-webpack-plugin": "1.4.1",
@@ -87,8 +88,9 @@
     "scripts": {
         "start-js": "node scripts/start.js",
         "predeploy": "npm run build",
+        "start": "serve -s build",
         "deploy": "gh-pages -d build",
-        "start": "npm-run-all -p watch-css start-js",
+        "start-dev": "npm-run-all -p watch-css start-js",
         "build": "npm run build-css && node scripts/build.js",
         "build-css": "node-sass-chokidar src/ -o src/",
         "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
